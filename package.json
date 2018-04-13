@@ -1,0 +1,11 @@
+{
+  "name": "comp5322groupproject",
+  "version": "1.0.0",
+  "description": "COMP 5322 Group Project (2017 - 2018)\u001b[D Semester 2) Group 12",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE"
+}
