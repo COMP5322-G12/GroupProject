@@ -1,0 +1,45 @@
+{
+  "name": "comp5322-group-project",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://comp5322.kwanwing.hk/",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "base64-img": "^1.0.4",
+    "classnames": "^2.2.5",
+    "js-base64": "^2.4.3",
+    "material-ui": "^1.0.0-beta.41",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-file-base64": "^1.0.3",
+    "react-i18nify": "^1.11.12",
+    "react-image-gallery": "^0.8.7",
+    "react-paypal-express-checkout": "^1.0.4",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "react-toastify": "^3.4.3",
+    "redux": "^3.7.2",
+    "redux-form": "^7.3.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "typeface-roboto": "0.0.54"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-react-app": "^2.0.1",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.5.1"
+  }
+}
