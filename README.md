@@ -1,4 +1,4 @@
-## COMP5322 Internet COmputing and Application
+## COMP5322 Internet Computing and Application
 ## GroupProject
  
 Presentation Order: 12  
