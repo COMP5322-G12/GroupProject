@@ -21,6 +21,7 @@ class ProductList extends Component {
   };
   static defaultProps = {
     isCreate: false,
+    isSubmit: false,
   };
   constructor(props) {
     super(props);
@@ -123,6 +124,7 @@ class ProductList extends Component {
               ]}
               onChange={e => this.setState({ item: { ...item, ProductGroup: e.target.value } })}
               required
+              disabled={this.state.isSubmit}
               error={error.ProductGroup.length > 0}
               helperText={error.ProductGroup}
             />
@@ -132,6 +134,7 @@ class ProductList extends Component {
               value={item.ProductSubject}
               onChange={e => this.setState({ item: { ...item, ProductSubject: e.target.value } })}
               required
+              disabled={this.state.isSubmit}
               error={error.ProductSubject.length > 0}
               helperText={error.ProductSubject}
             />
@@ -141,6 +144,7 @@ class ProductList extends Component {
               value={item.ProductContent}
               onChange={e => this.setState({ item: { ...item, ProductContent: e.target.value } })}
               required
+              disabled={this.state.isSubmit}
               error={error.ProductContent.length > 0}
               helperText={error.ProductContent}
             />
@@ -151,6 +155,7 @@ class ProductList extends Component {
               value={item.OnHandStock}
               onChange={e => this.setState({ item: { ...item, OnHandStock: e.target.value } })}
               required
+              disabled={this.state.isSubmit}
               error={error.OnHandStock.length > 0}
               helperText={error.OnHandStock}
             />
@@ -161,6 +166,7 @@ class ProductList extends Component {
               value={item.StandardPrice}
               onChange={e => this.setState({ item: { ...item, StandardPrice: e.target.value } })}
               required
+              disabled={this.state.isSubmit}
               error={error.StandardPrice.length > 0}
               helperText={error.StandardPrice}
             />
@@ -171,6 +177,7 @@ class ProductList extends Component {
               value={item.MembershipPrice}
               onChange={e => this.setState({ item: { ...item, MembershipPrice: e.target.value } })}
               required
+              disabled={this.state.isSubmit}
               error={error.MembershipPrice.length > 0}
               helperText={error.MembershipPrice}
             />
@@ -179,6 +186,7 @@ class ProductList extends Component {
               name="image"
               value={item.image ? item.ImageName : ''}
               type="file"
+              disabled={this.state.isSubmit}
               onChange={(e) => {
                 const file = e.target.files[0];
                 this.setState({ item: { ...item, image: file, ImageName: e.target.value } });
@@ -187,10 +195,12 @@ class ProductList extends Component {
           </DialogContent>
           <DialogActions>
             <Button
+              disabled={this.state.isSubmit}
               onClick={() => {
                 if (this.validateProduct(this.state.item)) {
+                  this.setState({ isSubmit: true });
                   this.props.submitForm(this.state.item, () => {
-                    this.setState({ open: false });
+                    this.setState({ open: false, isSubmit: false });
                   });
                 }
               }}
@@ -198,6 +208,7 @@ class ProductList extends Component {
               <Translate value={`EShopScreen.${this.props.isCreate ? 'Create' : 'Update'}`} />
             </Button>
             <Button
+              disabled={this.state.isSubmit}
               onClick={() => {
                 this.setState({ open: false });
               }}

@@ -11,6 +11,7 @@ import { Delete } from 'material-ui-icons';
 import axios from 'helpers/Axios';
 import Table from 'components/Table';
 import Base64 from 'helpers/Base64';
+import Loading from 'components/Loading';
 
 import ProductForm from './ProductForm';
 
@@ -35,6 +36,7 @@ class ProductList extends Component {
     }).isRequired,
   };
   state = {
+    isLoading: false,
     products: [],
     createItem: {
       ProductGroup: 'JEANS',
@@ -46,11 +48,12 @@ class ProductList extends Component {
     },
   };
   async componentWillMount() {
+    this.setState({ isLoading: true });
     const products = await this.getProducts();
-    this.setState({ products });
+    this.setState({ products, isLoading: false });
   }
   async getProducts() {
-    const response = await axios.get(axios.getRootUrl(`Products?createby=${this.props.me.MemberID}`), axios.mergeLoginConfig({}));
+    const response = await axios.get(axios.getRootUrl(`Products?createdby=${this.props.me.MemberID}`), axios.mergeLoginConfig({}));
     return response.data;
   }
   validateProduct = (product) => {
@@ -84,8 +87,9 @@ class ProductList extends Component {
           IPAddress: '127.0.0.1',
         }, axios.mergeLoginConfig({}));
       }
+      this.setState({ isLoading: true });
       const products = await this.getProducts();
-      this.setState({ products });
+      this.setState({ products, isLoading: false });
       if (close) {
         close();
       }
@@ -123,8 +127,9 @@ class ProductList extends Component {
           console.log(e);
         }
       }
+      this.setState({ isLoading: true });
       const products = await this.getProducts();
-      this.setState({ products });
+      this.setState({ products, isLoading: false });
       if (close) {
         close();
       }
@@ -132,14 +137,15 @@ class ProductList extends Component {
   }
   deleteProduct = async (product) => {
     await axios.delete(axios.getRootUrl(`Products?productId=${product.ProductID}`), axios.mergeLoginConfig({}));
+    this.setState({ isLoading: true });
     const products = await this.getProducts();
-    this.setState({ products });
+    this.setState({ products, isLoading: false });
   }
   rendeActionRow = item => (
     <TableCell style={{ display: 'flex' }}>
       <ProductForm
         item={item}
-        submitForm={updateItem => this.updateProduct(updateItem)}
+        submitForm={(updateItem, close) => this.updateProduct(updateItem, close)}
       />
       <IconButton
         onClick={() => this.deleteProduct(item)}
@@ -155,46 +161,50 @@ class ProductList extends Component {
         <ProductForm
           isCreate
           item={this.state.createItem}
-          submitForm={item => this.createProduct(item)}
+          submitForm={(item, close) => this.createProduct(item, close)}
         />
-        <Table
-          data={this.state.products}
-          orderBy="ProductID"
-          headers={[
-            {
-              id: 'ProductID',
-              numeric: true,
-              disablePadding: false,
-              label: <Translate value="EShopScreen.ID" />,
-            },
-            {
-              id: 'ProductGroup',
-              numeric: false,
-              disablePadding: false,
-              label: <Translate value="EShopScreen.ProductGroup" />,
-            },
-            {
-              id: 'ProductSubject',
-              numeric: false,
-              disablePadding: false,
-              label: <Translate value="EShopScreen.ProductSubject" />,
-            },
-            {
-              id: 'StandardPrice',
-              numeric: true,
-              disablePadding: false,
-              label: <Translate value="EShopScreen.StandardPrice" />,
-            },
-            {
-              id: 'MembershipPrice',
-              numeric: true,
-              disablePadding: false,
-              label: <Translate value="EShopScreen.MembershipPrice" />,
-            },
-          ]}
-          primaryKey="ProductID"
-          renderActionRow={item => this.rendeActionRow(item)}
-        />
+        {
+          this.state.isLoading ?
+            <Loading /> :
+            <Table
+              data={this.state.products}
+              orderBy="ProductID"
+              headers={[
+                {
+                  id: 'ProductID',
+                  numeric: true,
+                  disablePadding: false,
+                  label: <Translate value="EShopScreen.ID" />,
+                },
+                {
+                  id: 'ProductGroup',
+                  numeric: false,
+                  disablePadding: false,
+                  label: <Translate value="EShopScreen.ProductGroup" />,
+                },
+                {
+                  id: 'ProductSubject',
+                  numeric: false,
+                  disablePadding: false,
+                  label: <Translate value="EShopScreen.ProductSubject" />,
+                },
+                {
+                  id: 'StandardPrice',
+                  numeric: true,
+                  disablePadding: false,
+                  label: <Translate value="EShopScreen.StandardPrice" />,
+                },
+                {
+                  id: 'MembershipPrice',
+                  numeric: true,
+                  disablePadding: false,
+                  label: <Translate value="EShopScreen.MembershipPrice" />,
+                },
+              ]}
+              primaryKey="ProductID"
+              renderActionRow={item => this.rendeActionRow(item)}
+            />
+        }
       </Paper>
     );
   }

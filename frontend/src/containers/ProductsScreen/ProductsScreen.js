@@ -85,7 +85,7 @@ class ProductsScreen extends Component {
               filterProduct.map(product => (
                 <GridListTile key={product.ProductID}>
                   <img
-                    src={product.ImagePath ? product.ImagePath : 'pic.noimage.png'}
+                    src={product.ImagePath ? product.ImagePath : 'pic/noimage.png'}
                     alt={product.ProductSubject}
                   />
                   <GridListTileBar

@@ -66,7 +66,7 @@ class ProductScreen extends Component {
         <Card className={classes.card}>
           <CardMedia
             className={classes.media}
-            image={product.ImagePath ? product.ImagePath : 'pic.noimage.png'}
+            image={product.ImagePath ? product.ImagePath : 'pic/noimage.png'}
             src="image"
           />
           <div>

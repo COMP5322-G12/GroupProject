@@ -12,7 +12,7 @@ const ProductRow = ({
   <tr>
     <td style={{ width: '15%' }}>
       <img
-        src={item.ImagePath}
+        src={item.ImagePath ? item.ImagePath : 'pic/noimage.png'}
         alt={item.ProductSubject}
         style={{ maxWidth: 150 }}
       />

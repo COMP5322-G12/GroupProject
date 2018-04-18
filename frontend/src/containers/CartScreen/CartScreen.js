@@ -117,7 +117,7 @@ class CartScreen extends Component {
       cartProduct: product,
       total: product.reduce((a, b) => {
         const price = this.props.authenticated ? b.MembershipPrice : b.StandardPrice;
-        return a + price;
+        return a + (price * b.total);
       }, 0),
     });
     const { me } = this.props;
