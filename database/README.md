@@ -1,6 +1,6 @@
 ###How to Install SQL Server:
-1. Download SQL Server 2012 Express from:  
-https://www.microsoft.com/zh-tw/download/details.aspx?id=29062  
+1. Download SQL Server 2017 Express from:  
+https://www.microsoft.com/en-us/download/details.aspx?id=55994 
 2. Setup the SQL Server user information as follow:  
 username: sa, password: Comp5322!  
 3. Download SQL Server Managament Studio (SSMS) and install it from:  
