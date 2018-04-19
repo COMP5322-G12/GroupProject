@@ -21,7 +21,6 @@ class ProductList extends Component {
   };
   static defaultProps = {
     isCreate: false,
-    isSubmit: false,
   };
   constructor(props) {
     super(props);

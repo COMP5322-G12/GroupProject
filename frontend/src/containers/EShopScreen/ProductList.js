@@ -79,10 +79,11 @@ class ProductList extends Component {
       }, axios.mergeLoginConfig({}));
       const { data: savedProduct } = response;
       if (product.image && product.ImageName) {
-        const base64 = await Base64.encode(product.image.image);
+        const base64 = await Base64.encode(product.image);
+        console.log(savedProduct);
         await axios.post(axios.getRootUrl('Products/UpdateImage'), {
-          ProductID: savedProduct.ProductID,
-          ImageName: product.image.ImageName,
+          ProductID: savedProduct.ProductId,
+          ImageName: product.ImageName,
           ImagePath: base64,
           IPAddress: '127.0.0.1',
         }, axios.mergeLoginConfig({}));
@@ -90,6 +91,7 @@ class ProductList extends Component {
       this.setState({ isLoading: true });
       const products = await this.getProducts();
       this.setState({ products, isLoading: false });
+      console.log(close);
       if (close) {
         close();
       }
