@@ -1,8 +1,11 @@
 ## Frontend
-This is a project built by a react project. Please follow the step to build the project
+This is a project built by a react project.  
+  
+Please follow the step to build the project:  
 ### 1. `npm install`
 ### 2. `npm run build`
-### 3. Copy to IIS root folder
+### 3. change *apiHost* and *reportHost* to your own url in `src\constants\AppConfig.js`
+### 4. Copy to IIS root folder
 
 ## Available Scripts
 
